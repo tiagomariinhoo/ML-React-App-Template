@@ -21,22 +21,6 @@ from sklearn.preprocessing import StandardScaler
 
 dataset = pd.read_csv('heart.csv')
 
-#print(dataset.describe())
-
-#rcParams['figure.figsize'] = 20, 14
-#plt.matshow(dataset.corr())
-#plt.yticks(np.arange(dataset.shape[1]), dataset.columns)
-#plt.xticks(np.arange(dataset.shape[1]), dataset.columns)
-#plt.colorbar()
-
-#plt.show() uncomment to display plt
-#plt.hist('data')
-
-#Data Processing
-#CATEGORICAL VARIABLES - Breack each categorical column into dummy columns
-
-#print(dataset.head())
-
 dataset = pd.get_dummies(dataset, columns = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal'])
 
 data_input = pd.DataFrame({
@@ -56,9 +40,15 @@ data_input = pd.DataFrame({
     'target': [1]
 })
 
-#print(data_input.head())
-
 data_input = pd.get_dummies(data_input, columns = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal'])
+
+for i in dataset.columns:
+    if i not in data_input.columns:
+        data_input[i] = 0
+
+print(data_input)
+
+#data_input = dataset.loc[[0]]
 
 standardScaler = StandardScaler()
 columns_to_scale = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak']
@@ -66,31 +56,21 @@ columns_to_scale = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak']
 dataset[columns_to_scale] = standardScaler.fit_transform(dataset[columns_to_scale])
 data_input[columns_to_scale] = standardScaler.fit_transform(data_input[columns_to_scale])
 
-#print(data_input.head())
-
 y = dataset['target']
 X = dataset.drop(['target'], axis=1)
+
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.33, random_state = 0)
 
 y_input = data_input['target']
 x_input = data_input.drop(['target'], axis=1)
 
-#X_train e X_test são os dados separados do csv, um pra treino e outro pra teste
-
-print(X_test.info())
-#print(X_train.head())
-
-
 #Random Forest Classifier
-
-rf_scores = []
-estimators = [10, 100, 200, 500, 1000]
-
 rf_classifier = RandomForestClassifier(n_estimators = 10, random_state = 0)
 rf_classifier.fit(X_train, y_train)
-#print(rf_classifier.predict(X_test))
-#rf_classifier.score(X_test, y_test)
-#rf_classifier.score(x_input, y_input)
+
+y_pred = rf_classifier.predict(x_input)
+print(y_pred)
 
 
 
