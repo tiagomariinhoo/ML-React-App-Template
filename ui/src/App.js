@@ -7,8 +7,6 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import FormItem from './components/FormItem';
-
 class App extends Component {
 
   constructor(props) {
@@ -17,11 +15,19 @@ class App extends Component {
     this.state = {
       isLoading: false,
       formData: {
-        textfield1: '',
-        textfield2: '',
-        select1: 1,
-        select2: 1,
-        select3: 1
+        age: '',
+        sex: '',
+        cp: '',
+        trestbps: '',
+        chol: '',
+        fbs: '',
+        restecg: '',
+        thalach: '',
+        exang: '',
+        oldpeak: '',
+        slope: '',
+        ca: '',
+        thal: ''
       },
       result: ""
     };
@@ -58,7 +64,7 @@ class App extends Component {
       });
   }
 
-   handleCancelClick = (event) => {
+  handleCancelClick = (event) => {
     this.setState({ result: "" });
   }
 
@@ -70,13 +76,13 @@ class App extends Component {
     return (
       <Container>
         <div>
-          <h1 className="title">Heart Disease Prediction</h1>
+          <h1 className="title">ML React App</h1>
         </div>
         <div className="content">
-          <Form>
 
-            <FormItem label={'Age'}
-                      placeholder={'Your age'}></FormItem>
+          {/* <FormItem label={'Age'}
+                      placeholder={'Your age'}
+                      ></FormItem>
             <FormItem label={'Sex'}
                       placeholder={'Gender (1 - male, 0 - female)'}></FormItem>
             <FormItem label={'Chest-pain type'}
@@ -96,51 +102,165 @@ class App extends Component {
             <FormItem label={'Peak exercise ST segment'}
                       placeholder={'(1 - upsloping, 2 - flat, 3 - downsloping)'}></FormItem>
             <FormItem label={'Number of major vessels (0-3) colored by flourosopy'}
-                      placeholder={'Integer or float'}></FormItem>
+                      placeholder={'Integer or float (0-3)'}></FormItem>
             <FormItem label={'Thal'}
-                      placeholder={'Thalassemia (3 - normal, 6 - fixed defect, 7 - reversible defect)'}></FormItem>
+                      placeholder={'Thalassemia (3 - normal, 6 - fixed defect, 7 - reversible defect)'}></FormItem> */}
 
-            {/* <Form.Row>
+          <Form>
+            <Form.Row>
               <Form.Group as={Col}>
-                <Form.Label>Select 1</Form.Label>
+                <Form.Label>Age</Form.Label>
                 <Form.Control
-                  as="select"
-                  value={formData.select1}
-                  name="select1"
-                  onChange={this.handleChange}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </Form.Control>
+                  type="number"
+                  placeholder="Your age"
+                  name="age"
+                  value={formData.age}
+                  onChange={this.handleChange} />
               </Form.Group>
+
               <Form.Group as={Col}>
-                <Form.Label>Select 2</Form.Label>
+                <Form.Label>Sex</Form.Label>
                 <Form.Control
-                  as="select"
-                  value={formData.select2}
-                  name="select2"
-                  onChange={this.handleChange}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </Form.Control>
+                  type="number"
+                  placeholder="Gender (1 - male, 0 - female)"
+                  name="sex"
+                  value={formData.sex}
+                  onChange={this.handleChange} />
               </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>Select 3</Form.Label>
-                <Form.Control
-                  as="select"
-                  value={formData.select3}
-                  name="select3"
-                  onChange={this.handleChange}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </Form.Control>
-              </Form.Group>
-            </Form.Row> */}
+            </Form.Row>
+            
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Chest-pain type</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='Chest-pain experienced (1 - typical angina, 2 - atypical, 3 - non, 4 - asymptotic)'
+                    name="cp"
+                    value={formData.cp}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Resting Blood Pressure</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='Blood pressure (mmHg)'
+                    name="trestbps"
+                    value={formData.trestbps}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Serum Cholestrol</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='Display the serum cholesterol (mg/dl)'
+                    name="chol"
+                    value={formData.chol}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Fasting Blood Sugar</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='Compares fasting blood sugar > 120 mg/dl (1 - true, 0 - false)'
+                    name="fbs"
+                    value={formData.fbs}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Resting ECG</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='Electocardiographic results (0 - normal, 1 - ST-T wave abnormality, 2 - left ventricular hyperthrophy)'
+                    name="restecg"
+                    value={formData.restecg}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Max heart rate achieved</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='Max heart rate'
+                    name="thalach"
+                    value={formData.thalach}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Exercise induced angina</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='(1 - true, 0 - false)'
+                    name="exang"
+                    value={formData.exang}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>ST depression induced by exercise relative to rest</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='Value integer or float'
+                    name="oldpeak"
+                    value={formData.oldpeak}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Peak exercise ST segment</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='(1 - upsloping, 2 - flat, 3 - downsloping)'
+                    name="slope"
+                    value={formData.slope}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Number of major vessels (0-3) colored by flourosopy</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='Integer or float (0-3)'
+                    name="ca"
+                    value={formData.ca}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Thal</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder='Displays the thalassemia (3 - normal, 6 - fixed defect, 7 - reversible defect)'
+                    name="thal"
+                    value={formData.thal}
+                    onChange={this.handleChange} />
+                </Form.Group>
+              </Form.Row>
             
             <Row>
               <Col>
