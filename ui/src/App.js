@@ -80,32 +80,6 @@ class App extends Component {
         </div>
         <div className="content">
 
-          {/* <FormItem label={'Age'}
-                      placeholder={'Your age'}
-                      ></FormItem>
-            <FormItem label={'Sex'}
-                      placeholder={'Gender (1 - male, 0 - female)'}></FormItem>
-            <FormItem label={'Chest-pain type'}
-                      placeholder={'Chest-pain experienced (1 - typical angina, 2 - atypical, 3 - non, 4 - asymptotic)'}></FormItem>
-            <FormItem label={'Resting Blood Pressure'}
-                      placeholder={'Blood pressure (mmHg)'}></FormItem>
-            <FormItem label={'Serum Cholestrol'}
-                      placeholder={'Display the serum cholesterol (mg/dl)'}></FormItem>
-            <FormItem label={'Fasting Blood Sugar'}
-                      placeholder={'Compares fasting blood sugar > 120 mg/dl (1 - true, 0 - false)'}></FormItem>
-            <FormItem label={'Resting ECG'}
-                      placeholder={'Max heart rate'}></FormItem>
-            <FormItem label={'Exercise induced angina'}
-                      placeholder={'(1 - true, 0 - false)'}></FormItem>
-            <FormItem label={'ST depression induced by exercise relative to rest'}
-                      placeholder={'Value integer or float'}></FormItem>
-            <FormItem label={'Peak exercise ST segment'}
-                      placeholder={'(1 - upsloping, 2 - flat, 3 - downsloping)'}></FormItem>
-            <FormItem label={'Number of major vessels (0-3) colored by flourosopy'}
-                      placeholder={'Integer or float (0-3)'}></FormItem>
-            <FormItem label={'Thal'}
-                      placeholder={'Thalassemia (3 - normal, 6 - fixed defect, 7 - reversible defect)'}></FormItem> */}
-
           <Form>
             <Form.Row>
               <Form.Group as={Col}>

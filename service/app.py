@@ -11,21 +11,46 @@ app = Api(app = flask_app,
 name_space = app.namespace('prediction', description='Prediction APIs')
 
 model = app.model('Prediction params', 
-				  {'textField1': fields.String(required = True, 
-				  							   description="Text Field 1", 
-    					  				 	   help="Text Field 1 cannot be blank"),
-				  'textField2': fields.String(required = True, 
-				  							   description="Text Field 2", 
-    					  				 	   help="Text Field 2 cannot be blank"),
-				  'select1': fields.Integer(required = True, 
-				  							description="Select 1", 
-    					  				 	help="Select 1 cannot be blank"),
-				  'select2': fields.Integer(required = True, 
-				  							description="Select 2", 
-    					  				 	help="Select 2 cannot be blank"),
-				  'select3': fields.Integer(required = True, 
-				  							description="Select 3", 
-    					  				 	help="Select 3 cannot be blank")})
+				  {'age': fields.Integer(required = True, 
+				  							   description="Age", 
+    					  				 	   help="Age cannot be blank"),
+				  'sex': fields.Integer(required = True, 
+				  							   description="Sex", 
+    					  				 	   help="Sex cannot be blank"),
+				  'cp': fields.Integer(required = True, 
+				  							description="Chest-pain type", 
+    					  				 	help="Chest-pain cannot be blank"),
+				  'trestbps': fields.Integer(required = True, 
+				  							description="Resting Blood Pressure", 
+    					  				 	help="Resting Blood Pressure cannot be blank"),
+				  'chol': fields.Integer(required = True, 
+				  							description="Serum Cholestrol", 
+    					  				 	help="Serum Cholestrol cannot be blank"),
+					'fbs': fields.Integer(required = True, 
+				  							description="Fasting Blood Sugar", 
+    					  				 	help="Fasting Blood Sugar cannot be blank"),
+					'restecg': fields.Integer(required = True, 
+				  							description="Resting ECG", 
+    					  				 	help="Resting ECG cannot be blank"),
+					'thalach': fields.Integer(required = True, 
+				  							description="Max heart rate achieved", 
+    					  				 	help="Max heart rate achieved cannot be blank"),
+					'exang': fields.Integer(required = True, 
+				  							description="Exercise induced angina", 
+    					  				 	help="Exercise induced angina cannot be blank"),
+					'oldpeak': fields.Integer(required = True, 
+				  							description="ST depression induced by exercise relative to rest", 
+    					  				 	help="ST depression induced by exercise relative to rest cannot be blank"),
+					'slope': fields.Integer(required = True, 
+				  							description="Peak exercise ST segment", 
+    					  				 	help="Peak exercise ST segment cannot be blank"),
+					'ca': fields.Integer(required = True, 
+				  							description="Number of major vessels (0-3) colored by flourosopy", 
+    					  				 	help="Number of major vessels (0-3) colored by flourosopy cannot be blank"),
+					'thal': fields.Integer(required = True, 
+				  							description="Thal", 
+    					  				 	help="Thal cannot be blank"),
+											   })
 
 # classifier = joblib.load('classifier.joblib')
 
@@ -43,6 +68,7 @@ class MainClass(Resource):
 	def post(self):
 		try: 
 			formData = request.json
+			
 			data = [val for val in formData.values()]
 			# prediction = classifier.predict(data)
 			response = jsonify({
