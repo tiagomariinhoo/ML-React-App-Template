@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import FormItem from './components/FormItem';
+
 class App extends Component {
 
   constructor(props) {
@@ -38,7 +40,7 @@ class App extends Component {
   handlePredictClick = (event) => {
     const formData = this.state.formData;
     this.setState({ isLoading: true });
-    fetch('http://127.0.0.1:5000/prediction/', 
+    fetch('http://127.0.0.1:5000/prediction/',
       {
         headers: {
           'Accept': 'application/json',
@@ -56,7 +58,7 @@ class App extends Component {
       });
   }
 
-  handleCancelClick = (event) => {
+   handleCancelClick = (event) => {
     this.setState({ result: "" });
   }
 
@@ -68,34 +70,40 @@ class App extends Component {
     return (
       <Container>
         <div>
-          <h1 className="title">ML React App</h1>
+          <h1 className="title">Heart Disease Prediction</h1>
         </div>
         <div className="content">
           <Form>
-            <Form.Row>
-              <Form.Group as={Col}>
-                <Form.Label>Text Field 1</Form.Label>
-                <Form.Control 
-                  type="text" 
-                  placeholder="Text Field 1" 
-                  name="textfield1"
-                  value={formData.textfield1}
-                  onChange={this.handleChange} />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>Text Field 2</Form.Label>
-                <Form.Control 
-                  type="text" 
-                  placeholder="Text Field 2" 
-                  name="textfield2"
-                  value={formData.textfield2}
-                  onChange={this.handleChange} />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row>
+
+            <FormItem label={'Age'}
+                      placeholder={'Your age'}></FormItem>
+            <FormItem label={'Sex'}
+                      placeholder={'Gender (1 - male, 0 - female)'}></FormItem>
+            <FormItem label={'Chest-pain type'}
+                      placeholder={'Chest-pain experienced (1 - typical angina, 2 - atypical, 3 - non, 4 - asymptotic)'}></FormItem>
+            <FormItem label={'Resting Blood Pressure'}
+                      placeholder={'Blood pressure (mmHg)'}></FormItem>
+            <FormItem label={'Serum Cholestrol'}
+                      placeholder={'Display the serum cholesterol (mg/dl)'}></FormItem>
+            <FormItem label={'Fasting Blood Sugar'}
+                      placeholder={'Compares fasting blood sugar > 120 mg/dl (1 - true, 0 - false)'}></FormItem>
+            <FormItem label={'Resting ECG'}
+                      placeholder={'Max heart rate'}></FormItem>
+            <FormItem label={'Exercise induced angina'}
+                      placeholder={'(1 - true, 0 - false)'}></FormItem>
+            <FormItem label={'ST depression induced by exercise relative to rest'}
+                      placeholder={'Value integer or float'}></FormItem>
+            <FormItem label={'Peak exercise ST segment'}
+                      placeholder={'(1 - upsloping, 2 - flat, 3 - downsloping)'}></FormItem>
+            <FormItem label={'Number of major vessels (0-3) colored by flourosopy'}
+                      placeholder={'Integer or float'}></FormItem>
+            <FormItem label={'Thal'}
+                      placeholder={'Thalassemia (3 - normal, 6 - fixed defect, 7 - reversible defect)'}></FormItem>
+
+            {/* <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label>Select 1</Form.Label>
-                <Form.Control 
+                <Form.Control
                   as="select"
                   value={formData.select1}
                   name="select1"
@@ -108,7 +116,7 @@ class App extends Component {
               </Form.Group>
               <Form.Group as={Col}>
                 <Form.Label>Select 2</Form.Label>
-                <Form.Control 
+                <Form.Control
                   as="select"
                   value={formData.select2}
                   name="select2"
@@ -121,7 +129,7 @@ class App extends Component {
               </Form.Group>
               <Form.Group as={Col}>
                 <Form.Label>Select 3</Form.Label>
-                <Form.Control 
+                <Form.Control
                   as="select"
                   value={formData.select3}
                   name="select3"
@@ -132,7 +140,8 @@ class App extends Component {
                   <option>4</option>
                 </Form.Control>
               </Form.Group>
-            </Form.Row>
+            </Form.Row> */}
+            
             <Row>
               <Col>
                 <Button
@@ -140,7 +149,7 @@ class App extends Component {
                   variant="success"
                   disabled={isLoading}
                   onClick={!isLoading ? this.handlePredictClick : null}>
-                  { isLoading ? 'Making prediction' : 'Predict' }
+                  {isLoading ? 'Making prediction' : 'Predict'}
                 </Button>
               </Col>
               <Col>
