@@ -1,2 +1,1 @@
-web: cd ui
-web: yarn start
+web: sh -c 'cd ./ui/ && yarn start'
