@@ -65,6 +65,7 @@ class App extends Component {
   }
 
   handleCancelClick = (event) => {
+
     this.setState({ result: "" });
   }
 
@@ -76,7 +77,7 @@ class App extends Component {
     return (
       <Container>
         <div>
-          <h1 className="title">ML React App</h1>
+          <h1 className="title">Heart Disease Prediction</h1>
         </div>
         <div className="content">
 

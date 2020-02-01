@@ -1,12 +1,22 @@
 from flask import Flask, request, jsonify, make_response
 from flask_restplus import Api, Resource, fields
 from sklearn.externals import joblib
+from flask_cors import CORS, cross_origin
+import json, ast
+from random_forest_pred import RandomForestPred
+
 
 flask_app = Flask(__name__)
+cors = CORS(flask_app)
+
+flask_app.config['CORS_HEADERS'] = 'Content-Type'
+
 app = Api(app = flask_app, 
 		  version = "1.0", 
 		  title = "ML React App", 
 		  description = "Predict results using a trained model")
+
+
 
 name_space = app.namespace('prediction', description='Prediction APIs')
 
@@ -38,7 +48,7 @@ model = app.model('Prediction params',
 					'exang': fields.Integer(required = True, 
 				  							description="Exercise induced angina", 
     					  				 	help="Exercise induced angina cannot be blank"),
-					'oldpeak': fields.Integer(required = True, 
+					'oldpeak': fields.Float(required = True, 
 				  							description="ST depression induced by exercise relative to rest", 
     					  				 	help="ST depression induced by exercise relative to rest cannot be blank"),
 					'slope': fields.Integer(required = True, 
@@ -68,9 +78,20 @@ class MainClass(Resource):
 	def post(self):
 		try: 
 			formData = request.json
-			
+
+
+			formData = ast.literal_eval(json.dumps(formData))
+
 			data = [val for val in formData.values()]
-			# prediction = classifier.predict(data)
+
+			data = RandomForestPred()
+			data = data.predict(formData)
+
+			if(data == 0):
+				data = "Did not detect heart disease"
+			else:
+				data = "Heart disease detected"
+
 			response = jsonify({
 				"statusCode": 200,
 				"status": "Prediction made",
