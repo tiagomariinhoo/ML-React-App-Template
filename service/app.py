@@ -87,6 +87,8 @@ class MainClass(Resource):
 			data = RandomForestPred()
 			data = data.predict(formData)
 
+			print(data)
+
 			if(data == 0):
 				data = "Did not detect heart disease"
 			else:

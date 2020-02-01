@@ -40,8 +40,8 @@ class RandomForestPred():
 
         #print(list_index)
 
-        # print(list_index)
-        # print(list_values)
+        print(list_index)
+        print(list_values)
 
         #fileName = "data.json"
         #file1 = open(fileName, "w")
@@ -52,19 +52,19 @@ class RandomForestPred():
         #data_inputAux = pd.read_csv('data.json')
 
         data_input = pd.DataFrame({
-            'age': [32],
+            'age': [67],
             'sex': [1],
-            'cp' : [3],
-            'trestbps': [130],
-            'chol': [233],
-            'fbs': [1],
-            'restecg': [0],
-            'thalach': [150],
-            'exang': [0],
-            'oldpeak': [2.3],
-            'slope': [0],
-            'ca': [0],
-            'thal': [1],
+            'cp' : [4],
+            'trestbps': [160],
+            'chol': [286],
+            'fbs': [0],
+            'restecg': [2],
+            'thalach': [108],
+            'exang': [1],
+            'oldpeak': [1.5],
+            'slope': [2],
+            'ca': [3],
+            'thal': [3],
             'target': [1]
         })
 
@@ -73,44 +73,55 @@ class RandomForestPred():
             data_input[i] = list_values[j]
             j+=1
         
-        print(data_input)
 
         data_input = pd.get_dummies(data_input, columns = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal'])
+
 
         for i in dataset.columns:
             if i not in data_input.columns:
                 data_input[i] = 0
 
-        #print(data_input)
-
-        #data_input = dataset.loc[[0]]
-
         standardScaler = StandardScaler()
         columns_to_scale = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak']
+
 
         dataset[columns_to_scale] = standardScaler.fit_transform(dataset[columns_to_scale])
         data_input[columns_to_scale] = standardScaler.fit_transform(data_input[columns_to_scale])
 
         y = dataset['target']
-        X = dataset.drop(['target'], axis=1)
-
-
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.33, random_state = 0)
+        X = dataset.drop(['target'], axis=1)     
 
         y_input = data_input['target']
         x_input = data_input.drop(['target'], axis=1)
 
+        for i in x_input.columns:
+            if i not in X.columns:
+                X[i] = 0
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.33, random_state = 0)
+
+
         #Random Forest Classifier
-        rf_classifier = RandomForestClassifier(n_estimators = 10, random_state = 0)
+        rf_classifier = RandomForestClassifier(n_estimators = 100, random_state = 0)
         rf_classifier.fit(X_train, y_train)
+        print(rf_classifier.score(X_test, y_test))
+        
+        x_input = x_input.reindex(sorted(x_input.columns), axis=1)
+        X = X.reindex(sorted(X.columns), axis=1)
+
+        # print(x_input.columns)
+        # print(X.columns)
+
+        # print(x_input)
 
         y_pred = rf_classifier.predict(x_input)
-        print(y_pred)
+        # print(y_pred)
 
         return y_pred
 
-#a = RandomForestPred()
+# a = RandomForestPred()
 
 #a.predict('{\'fbs\': \'1\', \'slope\': \'1\', \'trestbps\': \'1\', \'exang\': \'1\', \'restecg\': \'1\', \'age\': \'1\', \'chol\': \'1\', \'sex\': \'1\', \'oldpeak\': \'1\', \'thalach\': \'1\', \'cp\': \'1\', \'ca\': \'1\', \'thal\': \'1\'}')
+# a.predict("Teste")
 
 
