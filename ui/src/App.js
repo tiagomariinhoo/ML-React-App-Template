@@ -230,7 +230,7 @@ class App extends Component {
                   <Form.Label>Thal</Form.Label>
                   <Form.Control
                     type="number"
-                    placeholder='Displays the thalassemia (3 - normal, 6 - fixed defect, 7 - reversible defect)'
+                    placeholder='Displays the thalassemia (1 - normal, 2 - fixed defect, 3 - reversible defect)'
                     name="thal"
                     value={formData.thal}
                     onChange={this.handleChange} />

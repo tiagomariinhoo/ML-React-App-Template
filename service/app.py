@@ -89,7 +89,7 @@ class MainClass(Resource):
 
 			print(data)
 
-			if(data == 0):
+			if(data == 1):
 				data = "Did not detect heart disease"
 			else:
 				data = "Heart disease detected"
