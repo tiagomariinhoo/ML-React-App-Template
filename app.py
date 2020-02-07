@@ -9,7 +9,6 @@ from random_forest_pred import RandomForestPred
 
 flask_app = Flask(__name__)
 cors = CORS(flask_app)
-
 flask_app.config['CORS_HEADERS'] = 'Content-Type'
 
 app = Api(app = flask_app, 
@@ -106,7 +105,3 @@ class MainClass(Resource):
 				"status": "Could not make prediction",
 				"error": str(error)
 			})
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(port=port)
