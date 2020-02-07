@@ -67,7 +67,7 @@ model = app.model('Prediction params',
 
 # classifier = joblib.load('classifier.joblib')
 
-@name_space.route("/")
+@name_space.route("*")
 class MainClass(Resource):
 
 	def options(self):
