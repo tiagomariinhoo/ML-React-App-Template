@@ -39,7 +39,7 @@ pluggy==0.6.0
 py==1.5.2
 pycrypto==2.6.1
 Pygments==2.2.0
-pygobject==3.26.1
+pygobject>=3.26
 pylint==1.8.3
 pyparsing==2.4.6
 pyrsistent==0.14.11
