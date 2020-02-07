@@ -9,12 +9,17 @@ from random_forest_pred import RandomForestPred
 
 flask_app = Flask(__name__)
 cors = CORS(flask_app)
+
 flask_app.config['CORS_HEADERS'] = 'Content-Type'
 
 app = Api(app = flask_app, 
 		  version = "1.0", 
 		  title = "ML React App", 
 		  description = "Predict results using a trained model")
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(threaded=True, port=port)
 
 name_space = app.namespace('prediction', description='Prediction APIs')
 
