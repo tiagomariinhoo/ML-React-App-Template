@@ -67,7 +67,7 @@ model = app.model('Prediction params',
 
 # classifier = joblib.load('classifier.joblib')
 
-@name_space.route("*")
+@name_space.route("/")
 class MainClass(Resource):
 
 	def options(self):
@@ -104,9 +104,15 @@ class MainClass(Resource):
 				})
 			response.headers.add('Access-Control-Allow-Origin', '*')
 			return response
+
 		except Exception as error:
 			return jsonify({
 				"statusCode": 500,
 				"status": "Could not make prediction",
 				"error": str(error)
 			})
+
+
+if __name__ == "__main__":
+	port = int(os.environ.get('PORT', 33507))
+    app.run(host='0.0.0.0', port=port)
