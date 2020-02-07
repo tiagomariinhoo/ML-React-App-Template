@@ -3,6 +3,7 @@ from flask_restplus import Api, Resource, fields
 from sklearn.externals import joblib
 from flask_cors import CORS, cross_origin
 import json, ast
+import os
 from random_forest_pred import RandomForestPred
 
 
@@ -11,16 +12,14 @@ cors = CORS(flask_app)
 
 flask_app.config['CORS_HEADERS'] = 'Content-Type'
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
-
 app = Api(app = flask_app, 
 		  version = "1.0", 
 		  title = "ML React App", 
 		  description = "Predict results using a trained model")
 
-
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 name_space = app.namespace('prediction', description='Prediction APIs')
 
