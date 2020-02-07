@@ -11,6 +11,10 @@ cors = CORS(flask_app)
 
 flask_app.config['CORS_HEADERS'] = 'Content-Type'
 
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+
 app = Api(app = flask_app, 
 		  version = "1.0", 
 		  title = "ML React App", 
