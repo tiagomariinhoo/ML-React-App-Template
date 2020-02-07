@@ -18,8 +18,8 @@ app = Api(app = flask_app,
 		  description = "Predict results using a trained model")
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(port=port)
+    #port = int(os.environ.get("PORT", 5000))
+    app.run()
 
 name_space = app.namespace('prediction', description='Prediction APIs')
 
