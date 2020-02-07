@@ -17,10 +17,6 @@ app = Api(app = flask_app,
 		  title = "ML React App", 
 		  description = "Predict results using a trained model")
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run()
-
 name_space = app.namespace('prediction', description='Prediction APIs')
 
 model = app.model('Prediction params', 
@@ -110,3 +106,6 @@ class MainClass(Resource):
 				"status": "Could not make prediction",
 				"error": str(error)
 			})
+
+if __name__ == "__main__":
+    app.run(port=5000)
